@@ -88,21 +88,23 @@ STOPWORDS = [
 
 def sanitize_name(media_name, remove_between=False):
   # Normalize string
-  normalized = unicodedata.normalize('NFKD', media_name).encode('ASCII', 'ignore')
+  name = unicodedata.normalize('NFKD', media_name).encode('ASCII', 'ignore')
 
   if remove_between:
     # Strip things between and including brackets and parentheses
-    removed_paren = re.sub(r'\([^)]*\)', '', normalized)
-    removed_bracket = re.sub(r'\[[^)]*\]', '', removed_paren)
+    name = re.sub(r'\([^)]*\)', '', name)
+    name = re.sub(r'\[[^)]*\]', '', name)
   else:
     # Just remove the actual brackets and parentheses
-    removed_bracket = normalized.translate(None, '[]()')
+    name = name.translate(None, '[]()')
 
-  if len(removed_bracket) > 140:
-    removed_bracket = removed_bracket[:140].rsplit(' ', 1)[0]
+  name = name.translate(None, '"')
 
-  trimmed = removed_bracket.strip()
-  return trimmed
+  if len(name) > 140:
+    name = name[:140].rsplit(' ', 1)[0]
+
+  name = name.strip()
+  return name
 
 
 # Very naive method to remove a leading "the" from the given string
@@ -706,6 +708,10 @@ def GetArtistSongsPath(artist_id):
   return SendCommand(RPCString("AudioLibrary.GetSongs", {"filter": {"artistid": int(artist_id)}, "properties":["file"]}))
 
 
+def GetAlbumSongsPath(album_id):
+  return SendCommand(RPCString("AudioLibrary.GetSongs", {"filter": {"albumid": int(album_id)}, "properties":["file"]}))
+
+
 def GetSongs():
   return SendCommand(RPCString("AudioLibrary.GetSongs"))
 
@@ -714,12 +720,20 @@ def GetSongsPath():
   return SendCommand(RPCString("AudioLibrary.GetSongs", {"properties":["file"]}))
 
 
+def GetSongIdPath(song_id):
+  return SendCommand(RPCString("AudioLibrary.GetSongDetails", {"songid": int(song_id), "properties":["file"]}))
+
+
 def GetRecentlyAddedAlbums():
   return SendCommand(RPCString("AudioLibrary.GetRecentlyAddedAlbums", {'properties':['artist']}))
 
 
 def GetRecentlyAddedSongs():
   return SendCommand(RPCString("AudioLibrary.GetRecentlyAddedSongs", {'properties':['artist']}))
+
+
+def GetRecentlyAddedSongsPath():
+  return SendCommand(RPCString("AudioLibrary.GetRecentlyAddedSongs", {'properties':['artist', 'file']}))
 
 
 def GetVideoPlaylists():
