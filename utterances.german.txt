@@ -7,17 +7,6 @@
 # http://www.makermusings.com/amazon-echo-utterance-expander/
 
 
-PlayPause (play/abspielen/pause/halt/anhalten)
-
-AMAZON.StopIntent (stop/anhalten/halt's maul/halt)
-
-Skip (/spiel(/e)) nächstes (/Lied)
-Skip weiter
-
-Prev (/spiel(/e)) (letztes/voriges) (/Lied)
-
-StartOver (nochmal/von vorn(/e)/wiederhol(/e)/wiederholen)
-
 Home startseite
 
 Back zurück
@@ -84,36 +73,19 @@ WhatAlbums (welches Album/welche (Alben/CD/CDs/Platte/Platten)) (ich von {Artist
 
 ListenToArtist spiel(/e) (Musik/Lieder/Songs/Mucke) von (/dem Artist/der Artistin/dem Komponist/der Komponistin/dem Künstler/der Künstlerin/der Band/der Gruppe) {Artist}
 
-StreamArtist Stream (Musik/Lieder/Songs/Mucke) von (/dem Artist/der Artistin/dem Komponist/der Komponistin/dem Künstler/der Künstlerin/der Band/der Gruppe) {Artist}
-
 ListenToAlbum spiel(/e) (das Album/die CD/die Platte) {Album} (/von {Artist})
-
-StreamAlbum stream album {Album}
-StreamAlbum stream album {Album} by {Artist}
 
 ListenToSong spiel(/e) (das Lied/den Song) {Song}
 ListenToSong spiel(/e) (das Lied/den Song) {Song} von {Artist}
 
-StreamSong stream song {Song}
-StreamSong stream song {Song} by {Artist}
-
 ListenToAlbumOrSong spiel(/e) (/das Album/die CD/die Platte) {Album} von (/der Band/der Gruppe) {Artist}
 ListenToAlbumOrSong spiel(/e) (/das Lied/den Song) {Song} von {Artist}
-
-StreamAlbumOrSong stream {Album} by {Artist}
-StreamAlbumOrSong stream {Song} by {Artist}
 
 ListenToAudioPlaylist spiel(/e) (Musik/Lieder/Song) playlist {AudioPlaylist}
 ListenToAudioPlaylist spiel(/e) {AudioPlaylist} (Musik/Lieder/Song) playlist
 
-StreamAudioPlaylist stream (song/music/audio/) playlist {AudioPlaylist}
-StreamAudioPlaylist stream {AudioPlaylist} (song/music/audio/) playlist
-
 ListenToAudioPlaylistRecent spiel(/e) neue (Musik/Lieder/Songs)
 ListenToAudioPlaylistRecent spiel(/e) (zuletzt/kürzlich) hinzugefügte (Musik/Lieder/Songs)
-
-StreamAudioPlaylistRecent stream recent (songs/music/audio/albums)
-StreamAudioPlaylistRecent stream recently added (songs/music/audio/albums)
 
 WatchRandomMovie zeige (/zufälligen) (/{Genre}) Film
 
@@ -175,8 +147,6 @@ PartyMode spiele irgend(/et)was
 PartyMode leg(/e) (/irgend(/et))was auf
 PartyMode Party (/Modus)
 
-StreamPartyMode stream (/zufällige/irgendwelche) (Musik/Lieder/Songs/Mucke)
-
 CurrentPlayItemInquiry (was/wer) (das ist/ist das)
 CurrentPlayItemInquiry was (/gerade/jetzt/gerade jetzt/jetzt gerade/in diesem Moment) (läuft/spielt)
 CurrentPlayItemInquiry welche (/Folge/Episode/Serie/Staffel) das ist
@@ -199,12 +169,16 @@ Suspend (/system) ((/geh/gehe) schlafen/suspend/standby)
 
 EjectMedia (/medium/disc/audio disc/bluray/bluray disc/cd/audio cd/dvd/Scheibe) auswerfen
 
+PlayerSeekForward (Schritt/Sprung) (/vorwärts/vor) (/um) {ForwardDur}
+PlayerSeekForward vorwärts (Schritt/Sprung) um {ForwardDur}
 PlayerSeekSmallForward (/kleiner) (Schritt/Sprung) (vorwärts/vor)
 PlayerSeekSmallForward (/kleiner) vorwärts (Schritt/Sprung)
 PlayerSeekSmallForward (vorwärts/vor(/spulen))
 PlayerSeekBigForward (großer/langer/weiter) (Schritt/Sprung) (vorwärts/vor)
 PlayerSeekBigForward (großer/langer/weiter) vorwärts (Schritt/Sprung)
 PlayerSeekBigForward weiter vor(/spulen/springen)
+PlayerSeekBackward (Schritt/Sprung) (rückwärts/zurück) (/um) {BackwardDur}
+PlayerSeekBackward (rückwärts/zurück) (Schritt/Sprung) um {BackwardDur}
 PlayerSeekSmallBackward (/kleiner) (Schritt/Sprung) (rückwärts/zurück)
 PlayerSeekSmallBackward (rückwärts/zurück(/spulen))
 PlayerSeekBigForward (großer/langer/weiter) (Schritt/Sprung) (rückwärts/zurück)

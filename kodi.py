@@ -530,6 +530,12 @@ def Stop():
     return SendCommand(RPCString("Player.Stop", {"playerid":playerid}))
 
 
+def PlayerSeek(seconds):
+  playerid = GetPlayerID()
+  if playerid:
+    return SendCommand(RPCString("Player.Seek", {"playerid":playerid, "value":{"seconds":seconds}}))
+
+
 def PlayerSeekSmallForward():
   playerid = GetPlayerID()
   if playerid:
@@ -899,29 +905,6 @@ def SystemEjectMedia():
 
 
 # Misc helpers
-
-# Prepare file url for streaming
-def PrepareDownload(path=""):
-  path = urllib.quote(path.encode('utf-8')).decode('utf-8')
-
-  # Join the environment variables into a url
-  url = "%s://%s:%s@%s:%s/%s/vfs" % (SCHEME, USER, PASS, KODI, PORT, SUBPATH)
-
-  # Remove any double slashes in the url
-  url = http_normalize_slashes(url)
-
-  url = url + '/' + path
-
-  accepted_answers = ['y', 'yes', 'Y', 'Yes', 'YES', 'true', 'True']
-
-  if os.getenv('USE_PROXY') in accepted_answers:
-    stream_url = 'https://kodi-music-proxy.herokuapp.com/proxy?file=' + url
-  elif os.getenv('ALT_PROXY'):
-    stream_url = os.getenv('ALT_PROXY') + url
-  else:
-    stream_url = url
-
-  return stream_url
 
 # Get the first active player.
 def GetPlayerID(playertype=['audio', 'video', 'picture']):

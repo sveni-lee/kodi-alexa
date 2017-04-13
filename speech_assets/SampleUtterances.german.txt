@@ -1,7 +1,3 @@
-AMAZON.StopIntent anhalten
-AMAZON.StopIntent halt
-AMAZON.StopIntent halt's maul
-AMAZON.StopIntent stop
 AddonExecute führe addon {Addon} aus
 AddonExecute führe erweiterung {Addon} aus
 AddonExecute führe plugin {Addon} aus
@@ -797,11 +793,6 @@ PartyMode spiele zufällige Lieder
 PartyMode spiele zufällige Mucke
 PartyMode spiele zufällige Musik
 PartyMode spiele zufällige Songs
-PlayPause abspielen
-PlayPause anhalten
-PlayPause halt
-PlayPause pause
-PlayPause play
 PlayerMoveDown geh nach unten
 PlayerMoveDown geh runter
 PlayerMoveDown gehe nach unten
@@ -834,6 +825,18 @@ PlayerRotateClockwise rotiere im Uhrzeigersinn
 PlayerRotateClockwise rotiere neunzig grad
 PlayerRotateCounterClockwise drehe gegen den Uhrzeigersinn
 PlayerRotateCounterClockwise rotiere gegen den Uhrzeigersinn
+PlayerSeekBackward Schritt rückwärts um {BackwardDur}
+PlayerSeekBackward Schritt rückwärts {BackwardDur}
+PlayerSeekBackward Schritt zurück um {BackwardDur}
+PlayerSeekBackward Schritt zurück {BackwardDur}
+PlayerSeekBackward Sprung rückwärts um {BackwardDur}
+PlayerSeekBackward Sprung rückwärts {BackwardDur}
+PlayerSeekBackward Sprung zurück um {BackwardDur}
+PlayerSeekBackward Sprung zurück {BackwardDur}
+PlayerSeekBackward rückwärts Schritt um {BackwardDur}
+PlayerSeekBackward rückwärts Sprung um {BackwardDur}
+PlayerSeekBackward zurück Schritt um {BackwardDur}
+PlayerSeekBackward zurück Sprung um {BackwardDur}
 PlayerSeekBigBackward weiter zurück
 PlayerSeekBigBackward weiter zurückspringen
 PlayerSeekBigBackward weiter zurückspulen
@@ -876,6 +879,20 @@ PlayerSeekBigForward weiter vorspringen
 PlayerSeekBigForward weiter vorspulen
 PlayerSeekBigForward weiter vorwärts Schritt
 PlayerSeekBigForward weiter vorwärts Sprung
+PlayerSeekForward Schritt um {ForwardDur}
+PlayerSeekForward Schritt vor um {ForwardDur}
+PlayerSeekForward Schritt vor {ForwardDur}
+PlayerSeekForward Schritt vorwärts um {ForwardDur}
+PlayerSeekForward Schritt vorwärts {ForwardDur}
+PlayerSeekForward Schritt {ForwardDur}
+PlayerSeekForward Sprung um {ForwardDur}
+PlayerSeekForward Sprung vor um {ForwardDur}
+PlayerSeekForward Sprung vor {ForwardDur}
+PlayerSeekForward Sprung vorwärts um {ForwardDur}
+PlayerSeekForward Sprung vorwärts {ForwardDur}
+PlayerSeekForward Sprung {ForwardDur}
+PlayerSeekForward vorwärts Schritt um {ForwardDur}
+PlayerSeekForward vorwärts Sprung um {ForwardDur}
 PlayerSeekSmallBackward Schritt rückwärts
 PlayerSeekSmallBackward Schritt zurück
 PlayerSeekSmallBackward Sprung rückwärts
@@ -1058,18 +1075,6 @@ PlayerZoomOutMoveUp zoom raus und rauf
 PlayerZoomReset kein zoom
 PlayerZoomReset normal zoom
 PlayerZoomReset reset zoom
-Prev letztes
-Prev letztes Lied
-Prev spiel letztes
-Prev spiel letztes Lied
-Prev spiel voriges
-Prev spiel voriges Lied
-Prev spiele letztes
-Prev spiele letztes Lied
-Prev spiele voriges
-Prev spiele voriges Lied
-Prev voriges
-Prev voriges Lied
 Reboot neustarten
 Reboot reboot
 Reboot system neustarten
@@ -1105,91 +1110,6 @@ Shutdown herunterfahren
 Shutdown shutdown
 Shutdown system herunterfahren
 Shutdown system shutdown
-Skip nächstes
-Skip nächstes Lied
-Skip spiel nächstes
-Skip spiel nächstes Lied
-Skip spiele nächstes
-Skip spiele nächstes Lied
-Skip weiter
-StartOver nochmal
-StartOver von vorn
-StartOver von vorne
-StartOver wiederhol
-StartOver wiederhole
-StartOver wiederholen
-StreamAlbum stream album {Album}
-StreamAlbum stream album {Album} by {Artist}
-StreamAlbumOrSong stream {Album} by {Artist}
-StreamAlbumOrSong stream {Song} by {Artist}
-StreamArtist Stream Lieder von dem Artist {Artist}
-StreamArtist Stream Lieder von dem Komponist {Artist}
-StreamArtist Stream Lieder von dem Künstler {Artist}
-StreamArtist Stream Lieder von der Artistin {Artist}
-StreamArtist Stream Lieder von der Band {Artist}
-StreamArtist Stream Lieder von der Gruppe {Artist}
-StreamArtist Stream Lieder von der Komponistin {Artist}
-StreamArtist Stream Lieder von der Künstlerin {Artist}
-StreamArtist Stream Lieder von {Artist}
-StreamArtist Stream Mucke von dem Artist {Artist}
-StreamArtist Stream Mucke von dem Komponist {Artist}
-StreamArtist Stream Mucke von dem Künstler {Artist}
-StreamArtist Stream Mucke von der Artistin {Artist}
-StreamArtist Stream Mucke von der Band {Artist}
-StreamArtist Stream Mucke von der Gruppe {Artist}
-StreamArtist Stream Mucke von der Komponistin {Artist}
-StreamArtist Stream Mucke von der Künstlerin {Artist}
-StreamArtist Stream Mucke von {Artist}
-StreamArtist Stream Musik von dem Artist {Artist}
-StreamArtist Stream Musik von dem Komponist {Artist}
-StreamArtist Stream Musik von dem Künstler {Artist}
-StreamArtist Stream Musik von der Artistin {Artist}
-StreamArtist Stream Musik von der Band {Artist}
-StreamArtist Stream Musik von der Gruppe {Artist}
-StreamArtist Stream Musik von der Komponistin {Artist}
-StreamArtist Stream Musik von der Künstlerin {Artist}
-StreamArtist Stream Musik von {Artist}
-StreamArtist Stream Songs von dem Artist {Artist}
-StreamArtist Stream Songs von dem Komponist {Artist}
-StreamArtist Stream Songs von dem Künstler {Artist}
-StreamArtist Stream Songs von der Artistin {Artist}
-StreamArtist Stream Songs von der Band {Artist}
-StreamArtist Stream Songs von der Gruppe {Artist}
-StreamArtist Stream Songs von der Komponistin {Artist}
-StreamArtist Stream Songs von der Künstlerin {Artist}
-StreamArtist Stream Songs von {Artist}
-StreamAudioPlaylist stream audio playlist {AudioPlaylist}
-StreamAudioPlaylist stream music playlist {AudioPlaylist}
-StreamAudioPlaylist stream playlist {AudioPlaylist}
-StreamAudioPlaylist stream song playlist {AudioPlaylist}
-StreamAudioPlaylist stream {AudioPlaylist} audio playlist
-StreamAudioPlaylist stream {AudioPlaylist} music playlist
-StreamAudioPlaylist stream {AudioPlaylist} playlist
-StreamAudioPlaylist stream {AudioPlaylist} song playlist
-StreamAudioPlaylistRecent stream recent albums
-StreamAudioPlaylistRecent stream recent audio
-StreamAudioPlaylistRecent stream recent music
-StreamAudioPlaylistRecent stream recent songs
-StreamAudioPlaylistRecent stream recently added albums
-StreamAudioPlaylistRecent stream recently added audio
-StreamAudioPlaylistRecent stream recently added music
-StreamAudioPlaylistRecent stream recently added songs
-StreamPartyMode stream Lieder
-StreamPartyMode stream Mucke
-StreamPartyMode stream Musik
-StreamPartyMode stream Songs
-StreamPartyMode stream irgendwelche Lieder
-StreamPartyMode stream irgendwelche Mucke
-StreamPartyMode stream irgendwelche Musik
-StreamPartyMode stream irgendwelche Songs
-StreamPartyMode stream zufällige Lieder
-StreamPartyMode stream zufällige Mucke
-StreamPartyMode stream zufällige Musik
-StreamPartyMode stream zufällige Songs
-StreamSong stream song {Song}
-StreamSong stream song {Song} by {Artist}
-StreamThis stream Aktuelle playlist
-StreamThis stream this
 SubtitlesNext Untertitel umschalten
 SubtitlesNext nächster Untertitel
 SubtitlesOff Untertitel aus

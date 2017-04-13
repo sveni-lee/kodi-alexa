@@ -1,6 +1,3 @@
-AMAZON.StopIntent cancel
-AMAZON.StopIntent shut up
-AMAZON.StopIntent stop
 AddonExecute execute addon {Addon}
 AddonExecute execute plugin {Addon}
 AddonExecute execute script {Addon}
@@ -396,9 +393,6 @@ PartyMode listen to random music
 PartyMode play all music
 PartyMode play random music
 PartyMode shuffle all music
-PlayPause pause
-PlayPause play
-PlayPause resume
 PlayerMoveDown move down
 PlayerMoveDown pan down
 PlayerMoveDown track down
@@ -415,6 +409,18 @@ PlayerRotateClockwise rotate
 PlayerRotateClockwise rotate clockwise
 PlayerRotateClockwise rotate ninety degrees
 PlayerRotateCounterClockwise rotate counter clockwise
+PlayerSeekBackward back jump by {BackwardDur}
+PlayerSeekBackward back step by {BackwardDur}
+PlayerSeekBackward backward jump by {BackwardDur}
+PlayerSeekBackward backward step by {BackwardDur}
+PlayerSeekBackward jump back by {BackwardDur}
+PlayerSeekBackward jump back {BackwardDur}
+PlayerSeekBackward jump backward by {BackwardDur}
+PlayerSeekBackward jump backward {BackwardDur}
+PlayerSeekBackward step back by {BackwardDur}
+PlayerSeekBackward step back {BackwardDur}
+PlayerSeekBackward step backward by {BackwardDur}
+PlayerSeekBackward step backward {BackwardDur}
 PlayerSeekBigBackward big back jump
 PlayerSeekBigBackward big back step
 PlayerSeekBigBackward big backward jump
@@ -451,6 +457,16 @@ PlayerSeekBigForward long forward jump
 PlayerSeekBigForward long forward step
 PlayerSeekBigForward long jump forward
 PlayerSeekBigForward long step forward
+PlayerSeekForward forward jump by {ForwardDur}
+PlayerSeekForward forward step by {ForwardDur}
+PlayerSeekForward jump by {ForwardDur}
+PlayerSeekForward jump forward by {ForwardDur}
+PlayerSeekForward jump forward {ForwardDur}
+PlayerSeekForward jump {ForwardDur}
+PlayerSeekForward step by {ForwardDur}
+PlayerSeekForward step forward by {ForwardDur}
+PlayerSeekForward step forward {ForwardDur}
+PlayerSeekForward step {ForwardDur}
 PlayerSeekSmallBackward back jump
 PlayerSeekSmallBackward back step
 PlayerSeekSmallBackward backward jump
@@ -576,45 +592,6 @@ PlayerZoomOutMoveUp zoom out and pan up
 PlayerZoomOutMoveUp zoom out and track up
 PlayerZoomReset normal zoom
 PlayerZoomReset reset zoom
-Prev listen to previous
-Prev listen to previous audio
-Prev listen to previous song
-Prev listen to previous track
-Prev listen to the previous
-Prev listen to the previous audio
-Prev listen to the previous song
-Prev listen to the previous track
-Prev play previous
-Prev play previous audio
-Prev play previous episode
-Prev play previous film
-Prev play previous movie
-Prev play previous show
-Prev play previous song
-Prev play previous track
-Prev play previous video
-Prev play the previous
-Prev play the previous audio
-Prev play the previous episode
-Prev play the previous film
-Prev play the previous movie
-Prev play the previous show
-Prev play the previous song
-Prev play the previous track
-Prev play the previous video
-Prev previous
-Prev watch previous
-Prev watch previous episode
-Prev watch previous film
-Prev watch previous movie
-Prev watch previous show
-Prev watch previous video
-Prev watch the previous
-Prev watch the previous episode
-Prev watch the previous film
-Prev watch the previous movie
-Prev watch the previous show
-Prev watch the previous video
 Reboot reboot
 Reboot reboot system
 Right go right
@@ -647,112 +624,6 @@ ShuffleVideoPlaylist shuffle {VideoPlaylist} show playlist
 ShuffleVideoPlaylist shuffle {VideoPlaylist} video playlist
 Shutdown shut down
 Shutdown shut down system
-Skip listen to next
-Skip listen to next audio
-Skip listen to next song
-Skip listen to next track
-Skip listen to the next
-Skip listen to the next audio
-Skip listen to the next song
-Skip listen to the next track
-Skip next
-Skip next audio
-Skip next episode
-Skip next film
-Skip next movie
-Skip next show
-Skip next song
-Skip next track
-Skip next video
-Skip play next
-Skip play next audio
-Skip play next episode
-Skip play next film
-Skip play next movie
-Skip play next show
-Skip play next song
-Skip play next track
-Skip play next video
-Skip play the next
-Skip play the next audio
-Skip play the next episode
-Skip play the next film
-Skip play the next movie
-Skip play the next show
-Skip play the next song
-Skip play the next track
-Skip play the next video
-Skip skip
-Skip skip audio
-Skip skip episode
-Skip skip film
-Skip skip movie
-Skip skip show
-Skip skip song
-Skip skip this
-Skip skip this audio
-Skip skip this episode
-Skip skip this film
-Skip skip this movie
-Skip skip this show
-Skip skip this song
-Skip skip this track
-Skip skip this video
-Skip skip track
-Skip skip video
-Skip watch next
-Skip watch next episode
-Skip watch next film
-Skip watch next movie
-Skip watch next show
-Skip watch next video
-Skip watch the next
-Skip watch the next episode
-Skip watch the next film
-Skip watch the next movie
-Skip watch the next show
-Skip watch the next video
-StartOver replay
-StartOver start over
-StreamAlbum stream album {Album}
-StreamAlbum stream album {Album} by {Artist}
-StreamAlbum stream the album {Album}
-StreamAlbum stream the album {Album} by {Artist}
-StreamAlbumOrSong stream the {Album} by {Artist}
-StreamAlbumOrSong stream the {Song} by {Artist}
-StreamAlbumOrSong stream {Album} by {Artist}
-StreamAlbumOrSong stream {Song} by {Artist}
-StreamArtist stream artist {Artist}
-StreamArtist stream music by {Artist}
-StreamAudioPlaylist stream audio playlist {AudioPlaylist}
-StreamAudioPlaylist stream music playlist {AudioPlaylist}
-StreamAudioPlaylist stream playlist {AudioPlaylist}
-StreamAudioPlaylist stream song playlist {AudioPlaylist}
-StreamAudioPlaylist stream the audio playlist {AudioPlaylist}
-StreamAudioPlaylist stream the music playlist {AudioPlaylist}
-StreamAudioPlaylist stream the playlist {AudioPlaylist}
-StreamAudioPlaylist stream the song playlist {AudioPlaylist}
-StreamAudioPlaylist stream {AudioPlaylist} audio playlist
-StreamAudioPlaylist stream {AudioPlaylist} music playlist
-StreamAudioPlaylist stream {AudioPlaylist} playlist
-StreamAudioPlaylist stream {AudioPlaylist} song playlist
-StreamAudioPlaylistRecent stream recent albums
-StreamAudioPlaylistRecent stream recent audio
-StreamAudioPlaylistRecent stream recent music
-StreamAudioPlaylistRecent stream recent songs
-StreamAudioPlaylistRecent stream recently added albums
-StreamAudioPlaylistRecent stream recently added audio
-StreamAudioPlaylistRecent stream recently added music
-StreamAudioPlaylistRecent stream recently added songs
-StreamPartyMode stream all music
-StreamPartyMode stream music
-StreamPartyMode stream random music
-StreamSong stream song {Song}
-StreamSong stream song {Song} by {Artist}
-StreamSong stream the song {Song}
-StreamSong stream the song {Song} by {Artist}
-StreamThis stream current playlist
-StreamThis stream this
 SubtitlesNext next subtitle language
 SubtitlesNext next subtitles
 SubtitlesNext switch subtitle language

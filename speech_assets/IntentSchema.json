@@ -37,7 +37,22 @@
       "intent": "UpdateAudio"
     },
     {
-      "intent": "PlayPause"
+      "intent": "PlayerSeekForward",
+      "slots": [
+        {
+          "name": "ForwardDur",
+          "type": "AMAZON.DURATION"
+        }
+      ]
+    },
+    {
+      "intent": "PlayerSeekBackward",
+      "slots": [
+        {
+          "name": "BackwardDur",
+          "type": "AMAZON.DURATION"
+        }
+      ]
     },
     {
       "intent": "PlayerSeekSmallForward"
@@ -52,7 +67,16 @@
       "intent": "PlayerSeekBigBackward"
     },
     {
+      "intent": "AMAZON.CancelIntent"
+    },
+    {
       "intent": "AMAZON.StopIntent"
+    },
+    {
+      "intent": "AMAZON.NoIntent"
+    },
+    {
+      "intent": "AMAZON.YesIntent"
     },
     {
       "intent": "AMAZON.NextIntent"
@@ -91,29 +115,7 @@
       ]
     },
     {
-      "intent": "StreamArtist",
-      "slots": [
-        {
-          "name": "Artist",
-          "type": "MUSICARTISTS"
-        }
-      ]
-    },
-    {
       "intent": "ListenToAlbum",
-      "slots": [
-        {
-          "name": "Artist",
-          "type": "MUSICARTISTS"
-        },
-        {
-          "name": "Album",
-          "type": "MUSICALBUMS"
-        }
-      ]
-    },
-    {
-      "intent": "StreamAlbum",
       "slots": [
         {
           "name": "Artist",
@@ -139,40 +141,7 @@
       ]
     },
     {
-      "intent": "StreamSong",
-      "slots": [
-        {
-          "name": "Artist",
-          "type": "MUSICARTISTS"
-        },
-        {
-          "name": "Song",
-          "type": "MUSICSONGS"
-        }
-      ]
-    },
-    {
-      "intent": "StreamThis"
-    },
-    {
       "intent": "ListenToAlbumOrSong",
-      "slots": [
-        {
-          "name": "Artist",
-          "type": "MUSICARTISTS"
-        },
-        {
-          "name": "Album",
-          "type": "MUSICALBUMS"
-        },
-        {
-          "name": "Song",
-          "type": "MUSICSONGS"
-        }
-      ]
-    },
-    {
-      "intent": "StreamAlbumOrSong",
       "slots": [
         {
           "name": "Artist",
@@ -198,15 +167,6 @@
       ]
     },
     {
-      "intent": "StreamAudioPlaylist",
-      "slots": [
-        {
-          "name": "AudioPlaylist",
-          "type": "MUSICPLAYLISTS"
-        }
-      ]
-    },
-    {
       "intent": "ShuffleAudioPlaylist",
       "slots": [
         {
@@ -217,9 +177,6 @@
     },
     {
       "intent": "ListenToAudioPlaylistRecent"
-    },
-    {
-      "intent": "StreamAudioPlaylistRecent"
     },
     {
       "intent": "WatchEpisode",
@@ -316,15 +273,6 @@
           "type": "VIDEOPLAYLISTS"
         }
       ]
-    },
-    {
-      "intent": "Prev"
-    },
-    {
-      "intent": "Skip"
-    },
-    {
-      "intent": "StartOver"
     },
     {
       "intent": "OpenRemote"
@@ -444,43 +392,40 @@
       "intent": "PlayerZoomInMoveRight"
     },
     {
-      "intent": "PlayerZoomOut"      
+      "intent": "PlayerZoomOut"
     },
     {
-      "intent": "PlayerZoomOutMoveUp"      
+      "intent": "PlayerZoomOutMoveUp"
     },
     {
-      "intent": "PlayerZoomOutMoveDown"      
+      "intent": "PlayerZoomOutMoveDown"
     },
     {
-      "intent": "PlayerZoomOutMoveLeft"      
+      "intent": "PlayerZoomOutMoveLeft"
     },
     {
-      "intent": "PlayerZoomOutMoveRight"      
+      "intent": "PlayerZoomOutMoveRight"
     },
     {
-      "intent": "PlayerZoomReset"      
+      "intent": "PlayerZoomReset"
     },
     {
-      "intent": "Hibernate"      
+      "intent": "Hibernate"
     },
     {
-      "intent": "Reboot"      
+      "intent": "Reboot"
     },
     {
-      "intent": "Shutdown"      
+      "intent": "Shutdown"
     },
     {
-      "intent": "Suspend"      
+      "intent": "Suspend"
     },
     {
-      "intent": "EjectMedia"      
+      "intent": "EjectMedia"
     },
     {
-      "intent": "PartyMode"      
-    },
-    {
-      "intent": "StreamPartyMode"
+      "intent": "PartyMode"
     },
     {
       "intent": "CurrentPlayItemInquiry"
