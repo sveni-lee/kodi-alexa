@@ -1,5 +1,4 @@
-requests
 gunicorn
-yaep
 pytz
-fuzzywuzzy
+flask-ask>=0.8.9
+kodi-voice>=0.8.4

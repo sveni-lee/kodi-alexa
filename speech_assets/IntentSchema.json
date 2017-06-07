@@ -1,8 +1,31 @@
 {
   "intents": [
     {
-      "intent": "WhatNewAlbums",
-      "slots": []
+      "intent": "RecommendMedia"
+    },
+    {
+      "intent": "RecommendMovie"
+    },
+    {
+      "intent": "RecommendShow"
+    },
+    {
+      "intent": "RecommendEpisode"
+    },
+    {
+      "intent": "RecommendMusicVideo"
+    },
+    {
+      "intent": "RecommendArtist"
+    },
+    {
+      "intent": "RecommendAlbum"
+    },
+    {
+      "intent": "RecommendSong"
+    },
+    {
+      "intent": "WhatNewAlbums"
     },
     {
       "intent": "WhatNewMovies",
@@ -14,11 +37,10 @@
       ]
     },
     {
-      "intent": "WhatNewShows",
-      "slots": []
+      "intent": "WhatNewShows"
     },
     {
-      "intent": "NewShowInquiry",
+      "intent": "WhatNewEpisodes",
       "slots": [
         {
           "name": "Show",
@@ -27,44 +49,106 @@
       ]
     },
     {
-      "intent": "CleanVideo",
-      "slots": []
+      "intent": "CleanVideo"
     },
     {
-      "intent": "UpdateVideo",
-      "slots": []
+      "intent": "UpdateVideo"
     },
     {
-      "intent": "CleanAudio",
-      "slots": []
+      "intent": "CleanAudio"
     },
     {
-      "intent": "UpdateAudio",
-      "slots": []
+      "intent": "UpdateAudio"
     },
     {
-      "intent": "PlayPause",
-      "slots": []
+      "intent": "PlayerSeekForward",
+      "slots": [
+        {
+          "name": "ForwardDur",
+          "type": "AMAZON.DURATION"
+        }
+      ]
     },
     {
-      "intent": "PlayerSeekSmallForward",
-      "slots": []
+      "intent": "PlayerSeekBackward",
+      "slots": [
+        {
+          "name": "BackwardDur",
+          "type": "AMAZON.DURATION"
+        }
+      ]
     },
     {
-      "intent": "PlayerSeekSmallBackward",
-      "slots": []
+      "intent": "PlayerSeekSmallForward"
     },
     {
-      "intent": "PlayerSeekBigForward",
-      "slots": []
+      "intent": "PlayerSeekSmallBackward"
     },
     {
-      "intent": "PlayerSeekBigBackward",
-      "slots": []
+      "intent": "PlayerSeekBigForward"
     },
     {
-      "intent": "Stop",
-      "slots": []
+      "intent": "PlayerSeekBigBackward"
+    },
+    {
+      "intent": "AMAZON.CancelIntent"
+    },
+    {
+      "intent": "AMAZON.StopIntent"
+    },
+    {
+      "intent": "AMAZON.NoIntent"
+    },
+    {
+      "intent": "AMAZON.YesIntent"
+    },
+    {
+      "intent": "AMAZON.NextIntent"
+    },
+    {
+      "intent": "AMAZON.PauseIntent"
+    },
+    {
+      "intent": "AMAZON.PreviousIntent"
+    },
+    {
+      "intent": "AMAZON.ResumeIntent"
+    },
+    {
+      "intent": "AMAZON.StartOverIntent"
+    },
+    {
+      "intent": "AMAZON.ShuffleOnIntent"
+    },
+    {
+      "intent": "AMAZON.ShuffleOffIntent"
+    },
+    {
+      "intent": "AMAZON.LoopOnIntent"
+    },
+    {
+      "intent": "AMAZON.LoopOffIntent"
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    },
+    {
+      "intent": "PlayMedia",
+      "slots": [
+        {
+          "name": "Movie",
+          "type": "MOVIES"
+        }
+      ]
+    },
+    {
+      "intent": "ShuffleMedia",
+      "slots": [
+        {
+          "name": "Show",
+          "type": "SHOWS"
+        }
+      ]
     },
     {
       "intent": "WhatAlbums",
@@ -76,7 +160,25 @@
       ]
     },
     {
+      "intent": "ListenToAudio",
+      "slots": [
+        {
+          "name": "Artist",
+          "type": "MUSICARTISTS"
+        }
+      ]
+    },
+    {
       "intent": "ListenToArtist",
+      "slots": [
+        {
+          "name": "Artist",
+          "type": "MUSICARTISTS"
+        }
+      ]
+    },
+    {
+      "intent": "ListenToLatestAlbum",
       "slots": [
         {
           "name": "Artist",
@@ -137,6 +239,28 @@
       ]
     },
     {
+      "intent": "ShuffleLatestAlbum",
+      "slots": [
+        {
+          "name": "Artist",
+          "type": "MUSICARTISTS"
+        }
+      ]
+    },
+    {
+      "intent": "ShuffleAlbum",
+      "slots": [
+        {
+          "name": "Artist",
+          "type": "MUSICARTISTS"
+        },
+        {
+          "name": "Album",
+          "type": "MUSICALBUMS"
+        }
+      ]
+    },
+    {
       "intent": "ShuffleAudioPlaylist",
       "slots": [
         {
@@ -146,8 +270,16 @@
       ]
     },
     {
-      "intent": "ListenToAudioPlaylistRecent",
-      "slots": []
+      "intent": "ListenToAudioPlaylistRecent"
+    },
+    {
+      "intent": "WatchVideo",
+      "slots": [
+        {
+          "name": "Movie",
+          "type": "MOVIES"
+        }
+      ]
     },
     {
       "intent": "WatchEpisode",
@@ -194,8 +326,7 @@
       ]
     },
     {
-      "intent": "WatchLastShow",
-      "slots": []
+      "intent": "WatchLastShow"
     },
     {
       "intent": "WatchMovie",
@@ -225,6 +356,15 @@
       ]
     },
     {
+      "intent": "ShuffleShow",
+      "slots": [
+        {
+          "name": "Show",
+          "type": "SHOWS"
+        }
+      ]
+    },
+    {
       "intent": "ShuffleVideoPlaylist",
       "slots": [
         {
@@ -247,72 +387,46 @@
       ]
     },
     {
-      "intent": "Prev",
-      "slots": []
+      "intent": "Home"
     },
     {
-      "intent": "Skip",
-      "slots": []
+      "intent": "Back"
     },
     {
-      "intent": "StartOver",
-      "slots": []
+      "intent": "Up"
     },
     {
-      "intent": "Home",
-      "slots": []
+      "intent": "Down"
     },
     {
-      "intent": "Back",
-      "slots": []
+      "intent": "Right"
     },
     {
-      "intent": "Up",
-      "slots": []
+      "intent": "Left"
     },
     {
-      "intent": "Down",
-      "slots": []
+      "intent": "Select"
     },
     {
-      "intent": "Right",
-      "slots": []
+      "intent": "Menu"
     },
     {
-      "intent": "Left",
-      "slots": []
+      "intent": "PageUp"
     },
     {
-      "intent": "Select",
-      "slots": []
+      "intent": "PageDown"
     },
     {
-      "intent": "Menu",
-      "slots": []
+      "intent": "Fullscreen"
     },
     {
-      "intent": "PageUp",
-      "slots": []
+      "intent": "Mute"
     },
     {
-      "intent": "PageDown",
-      "slots": []
+      "intent": "VolumeUp"
     },
     {
-      "intent": "Fullscreen",
-      "slots": []
-    },
-    {
-      "intent": "Mute",
-      "slots": []
-    },
-    {
-      "intent": "VolumeUp",
-      "slots": []
-    },
-    {
-      "intent": "VolumeDown",
-      "slots": []
+      "intent": "VolumeDown"
     },
     {
       "intent": "VolumeSet",
@@ -333,132 +447,100 @@
       ]
     },
     {
-      "intent": "SubtitlesOn",
-      "slots": []
+      "intent": "SubtitlesOn"
     },
     {
-      "intent": "SubtitlesOff",
-      "slots": []
+      "intent": "SubtitlesOff"
     },
     {
-      "intent": "SubtitlesNext",
-      "slots": []
+      "intent": "SubtitlesNext"
     },
     {
-      "intent": "SubtitlesPrevious",
-      "slots": []
+      "intent": "SubtitlesPrevious"
     },
     {
-      "intent": "AudioStreamNext",
-      "slots": []
+      "intent": "AudioStreamNext"
     },
     {
-      "intent": "AudioStreamPrevious",
-      "slots": []
+      "intent": "AudioStreamPrevious"
     },
     {
-      "intent": "PlayerMoveUp",
-      "slots": []
+      "intent": "PlayerMoveUp"
     },
     {
-      "intent": "PlayerMoveDown",
-      "slots": []
+      "intent": "PlayerMoveDown"
     },
     {
-      "intent": "PlayerMoveLeft",
-      "slots": []
+      "intent": "PlayerMoveLeft"
     },
     {
-      "intent": "PlayerMoveRight",
-      "slots": []
+      "intent": "PlayerMoveRight"
     },
     {
-      "intent": "PlayerRotateClockwise",
-      "slots": []
+      "intent": "PlayerRotateClockwise"
     },
     {
-      "intent": "PlayerRotateCounterClockwise",
-      "slots": []
+      "intent": "PlayerRotateCounterClockwise"
     },
     {
-      "intent": "PlayerZoomHold",
-      "slots": []
+      "intent": "PlayerZoomHold"
     },
     {
-      "intent": "PlayerZoomIn",
-      "slots": []
+      "intent": "PlayerZoomIn"
     },
     {
-      "intent": "PlayerZoomInMoveUp",
-      "slots": []
+      "intent": "PlayerZoomInMoveUp"
     },
     {
-      "intent": "PlayerZoomInMoveDown",
-      "slots": []
+      "intent": "PlayerZoomInMoveDown"
     },
     {
-      "intent": "PlayerZoomInMoveLeft",
-      "slots": []
+      "intent": "PlayerZoomInMoveLeft"
     },
     {
-      "intent": "PlayerZoomInMoveRight",
-      "slots": []
+      "intent": "PlayerZoomInMoveRight"
     },
     {
-      "intent": "PlayerZoomOut",
-      "slots": []
+      "intent": "PlayerZoomOut"
     },
     {
-      "intent": "PlayerZoomOutMoveUp",
-      "slots": []
+      "intent": "PlayerZoomOutMoveUp"
     },
     {
-      "intent": "PlayerZoomOutMoveDown",
-      "slots": []
+      "intent": "PlayerZoomOutMoveDown"
     },
     {
-      "intent": "PlayerZoomOutMoveLeft",
-      "slots": []
+      "intent": "PlayerZoomOutMoveLeft"
     },
     {
-      "intent": "PlayerZoomOutMoveRight",
-      "slots": []
+      "intent": "PlayerZoomOutMoveRight"
     },
     {
-      "intent": "PlayerZoomReset",
-      "slots": []
+      "intent": "PlayerZoomReset"
     },
     {
-      "intent": "Hibernate",
-      "slots": []
+      "intent": "Hibernate"
     },
     {
-      "intent": "Reboot",
-      "slots": []
+      "intent": "Reboot"
     },
     {
-      "intent": "Shutdown",
-      "slots": []
+      "intent": "Shutdown"
     },
     {
-      "intent": "Suspend",
-      "slots": []
+      "intent": "Suspend"
     },
     {
-      "intent": "EjectMedia",
-      "slots": []
+      "intent": "EjectMedia"
     },
     {
-      "intent": "PartyMode",
-      "slots": []
+      "intent": "PartyMode"
     },
     {
-      "intent": "CurrentPlayItemInquiry",
-      "slots": []
+      "intent": "CurrentPlayItemInquiry"
     },
     {
-      "intent": "CurrentPlayItemTimeRemaining",
-      "slots": []
+      "intent": "CurrentPlayItemTimeRemaining"
     },
     {
       "intent": "AddonExecute",

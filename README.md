@@ -1,16 +1,23 @@
 # Alexa integration with Kodi
 
-I'm forking the base code off of [this project from Maker Musings](http://www.makermusings.com/2015/08/22/home-automation-with-amazon-echo-apps-part-2). It originally supported checking to see how many new episodes there are and you can ask it if there are any new episodes for a certain show.
+## Updating
 
-I've expanded it to support the following features:
+If you are updating from a previous version, **it is very important that you browse to the UPGRADING.md file and look at what you need to do.**
 
-- Basic navigation (Up/Down, Left/Right, Page Up/Down, Select, Back, Open Menu)
-- Playback control (Play/Pause, Skip, Previous, Stop)
+## About
+
+Here are some of the features supported by this skill:
+
+- Basic navigation (Up/Down, Left/Right, Page Up/Down, Select, Back, Menu, Zoom, Rotate, Move)
+- Playback control (Play/Pause, Skip, Previous, Stop, Step/Jump)
 - Adjust volume
-- Shuffle music by artist
-- Play specific album
-- Play audio playlists
+- Shuffle all music by an artist
+- Play/Shuffle specific album
+- Play/Shuffle the latest album by an artist
+- Play a specific song
+- Play/Shuffle audio and video playlists
 - "Party mode" for music (shuffle all)
+- Shuffle all episodes of a TV show
 - Play random unwatched episode of TV show
 - Play random unwatched movie
 - Play random movie from a specific genre
@@ -19,147 +26,123 @@ I've expanded it to support the following features:
 - Continue watching next episode of last show that was watched
 - Play next episode of a show
 - Play newest episode of a show
-- List recently added media
+- Recommend media to watch/listen to
+- List/Play recently added media
 - List available albums by an artist
 - Clean/Update video and audio sources
 - "What's playing?" functionality for music, movies, and shows
+- Report time remaining on current media and when it will end
 - Cycle through audio and subtitle streams
 - Search for something in your library
 - Execute addons
 - Shutdown/reboot/sleep/hibernate system
 - Toggle fullscreen
-- Eject disc
+- Eject media
+
+## Initial Computer Setup
+Unless you are going to host the skill on Heroku, there are a few things in the instructions that you will need to install before you can get started: 
+
+ - **Python 2.7 (Python 3 will not work)**
+ - Git
+
+ There are numerous tutorials online about how to install these, so just Google how to install them on your OS if you are uncertain about how to proceed.
 
 ## Kodi Setup
 
-Before you can do anything, you need to enable the "Allow remote control via HTTP", "Allow remote control from applications on this system", and "Allow remote control from applications on other systems" options in your Kodi settings. (Note that wording might be change a little bit on different versions, this example is for Kodi 17).
+Before a command from Alexa can be sent to your [Kodi](https://kodi.tv) box, you need to enable the "Allow remote control via HTTP", "Allow remote control from applications on this system", and "Allow remote control from applications on other systems" options in your [Kodi](https://kodi.tv) settings. Note that wording might be change a little bit on different versions, this example is for [Kodi](https://kodi.tv) 17.
 
 ![Kodi settings](http://i.imgur.com/YMqS8Qj.png)
 
-Make sure to keep track of the port, username, and password you are using. Now, you'll need to have your Kodi box opened up to the internet via port forwarding. If you don't have a dedicated IP address, you'll need a dynamic DNS service to give you a static URL to use so you don't have to be constantly change this value.
+Make sure to keep track of the port, username, and password you are using.
 
-Once you get that setup, you'll have to have your own server to handle the requests and pass them to your Kodi box. Since this is a Python application, it has several ways that you can run it.
+Now, you'll need to have your [Kodi](https://kodi.tv) box opened up to the internet via port forwarding.
 
-Here are a few options to get started:
+If you don't have a dedicated IP address, you'll need a dynamic DNS service to give you a static URL to use so you don't have to be constantly change this value.
+
+Repeat the above for each instance of [Kodi](https://kodi.tv) that you wish to control via the skill.  Remember you will need to open a separate, unique port on your router for each instance of [Kodi](https://kodi.tv).
+
+Once you get that setup, you'll have to have your own server to handle the requests and pass them to your [Kodi](https://kodi.tv) box. Since this is a Python application, it has several ways that you can run it. Here are a few options to get started:
 
 - [Heroku](#heroku)
 - [AWS Lambda](#aws-lambda)
-- [Docker](#docker)
+- ~~[Docker](#docker)~~
 
-If you plan on running your own Apache/Nginx server, I'm sure you can figure that out yourself. Skip ahead to the [Skill setup section](#skill-setup).
+If you plan on running your own Apache/Nginx server, I'm sure you can figure that out yourself. Skip ahead to the [Skill setup section](#skill-setup). Keep in mind that you will have to generate a self-signed SSL cert (or Let's Encrypt) so that Amazon will allow you to use it.
 
 ## Heroku
-
+### Pricing
 [Heroku](https://heroku.com/) is a great way to get a server running for free, but there is a small limitation with the free tier on Heroku where the 'dyno' will go to sleep after 30 minutes of in-activity. This might cause some commands to timeout, but so far it seems to be the best option for getting up and running as quickly as possibly. To get around this, you can either pay for a "Hobby" server which is only $7/month. If you really don't want to pay, there is a work-a-round where you get enough free hours a month to leave this server running 24/7 if you add your Credit Card to your account. Then you can use something like [Kaffeine](http://kaffeine.herokuapp.com/) to keep it from spinning down.
 
-After you've setup an Heroku account, go ahead and [install the command line tool](https://toolbelt.heroku.com/). Once installed, open up a command line and run `heroku login`.
+### Limitations
+Currently we do not support addressing multiple instances of [Kodi](https://kodi.tv) with [Heroku](https://heroku.com/).  If you wish to control multiple instances of [Kodi](https://kodi.tv), you will need to set up multiple copies of the skill to do so.
 
-To create a new app, just run this from the command line: `heroku apps:create`. If that runs successfully, you'll see something like this:
-![Create app](http://i.imgur.com/C17Ts7L.png)
+### Setup
+After you've setup an Heroku account, click on this button below to provision a new server. Select a unique name to make upgrades easy.
 
-Now, clone my repo: `git clone https://github.com/m0ngr31/kodi-alexa.git` and `cd kodi-alexa`.
-
-Once you have my repo cloned and you are in the directory, you can setup the following environment variables to talk to your Kodi box:
-
-- KODI_ADDRESS
-- KODI_PORT
-- KODI_USERNAME
-- KODI_PASSWORD
-
-You can do this easily from the command line: `heroku config:set KODI_ADDRESS='your_ip_or_dynamic_address' KODI_PORT='kodi_port' KODI_USERNAME='kodi_username' KODI_PASSWORD='kodi_password' --app app-name-and-number`. Changing of course for your settings. You can also use the settings page on your Heroku app to add these.
-
-You can also alternatively store configuration in a file called `.env` which you need to create yourself from a copy of `.env.wsgi`
-
-Now run `git remote add heroku https://git.heroku.com/your_apps_name_and_number.git`. This command will allow heroku to deploy new code based on what is in your directory.
-
-Next, run `git push heroku master`. This will push the code to Heroku and deploy the server!
-
-Heroku doesn't just fire up the server automatically, so you have to tell it to: `heroku ps:scale web=1 --app app-name-and-number`. Now you are ready to setup the Alexa skill.
-
-*If I release a new update here, just browse to the repo directory in your terminal, and run these commands: `git pull origin master` and `git push heroku master`*
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://www.heroku.com/deploy/?template=https://github.com/m0ngr31/kodi-alexa)
 
 Now skip ahead to the [Skill setup section](#skill-setup).
 
 ## AWS Lambda
+### Pricing
+Lambda is a great service which lets the skill run "serverless". AWS provides credits for new accounts and should allow you to run everything the skill needs for free for 12 months. Once you are being billed for it, it will be less than $0.20/month. Very reasonable for what it offers.
 
-I'm not going to talk about what Lambda is, I'll let you [search for that on your own](http://lmgtfy.com/?q=What+is+AWS+Lambda%3F#). On Lambda, the first 1,000,000 requests/month are free, so I doubt you'll ever hit it's limit talking to your Echo.
+### Setup
+Getting going on Lambda is pretty straightforward. First, you'll need to create an Amazon developer account if you don't have one already. After that, browse to the [IAM Management Console](https://console.aws.amazon.com/iam/home) where you will create a new user:
 
-To deploy to Lambda, we're going to use a great little Python package called [`lambda-deploy`](https://github.com/jimjkelly/lambda-deploy), so you'll have to have Python 2.7 (and pip) installed. If you don't have it installed on your computer already, just install it and come back. There are plenty of guides online to install it on whatever system you're using.
+![First page](http://i.imgur.com/rymHquZ.png)
+You can enter whatever username you want here, but make sure that Programmatic access is checked.
 
-Now, either [download](https://github.com/m0ngr31/kodi-alexa/archive/master.zip) or clone my repo: `git clone https://github.com/m0ngr31/kodi-alexa.git` and `cd kodi-alexa`.
+![Second page](http://i.imgur.com/TXX25BI.png)
+Attach the 'AdministratorAccess` permission to the new user.
 
-Once you have my repo downloaded and you are in the directory, you can setup the following environment variables to talk to your Kodi box:
+![Third page](http://i.imgur.com/83o9cen.png)
+Confirmation page should look like this.
 
-- KODI_ADDRESS
-- KODI_PORT
-- KODI_USERNAME
-- KODI_PASSWORD
+![Fourth page](http://i.imgur.com/3PZM92w.png)
+Once you get here, do not leave the page! You need the Access key ID and Secret access key for the next step. If you close now you'll have to create a new user. You can't get access to the Secret access key again.
 
-And several AWS environment variables so we can upload the code to Lambda:
+Next, run these commands to configure your computer for AWS service access:
+`pip install awscli` and then `aws configure`. Just follow the prompts, and copy paste the keys when it asks for them. When it asks for location, if you are in the US, enter: `us-east-1`, and if you are in Europe: `eu-west-1`.
 
-- AWS_ACCESS_KEY_ID
-- AWS_SECRET_ACCESS_KEY
-- LAMBDA_ROLE
+After you've done that, run `pip install virtualenv`. This is required for a later step.
 
-The environment variables are stored in an `.env` file which you need to create yourself from a copy of `.env.lambda`
+Now, clone my repo: `git clone https://github.com/m0ngr31/kodi-alexa.git` and `cd kodi-alexa`. Once you are inside the project directory, you're going to create a new "Virtual environement" and then activate it:
+`virtualenv venv` and `source venv/bin/activate` (if you are on Windows, that's `venv\Scripts\activate.bat` or `venv\Scripts\activate.ps1` for Powershell).
 
-**Take care with your `.env` file, it contains access details that you do not want to be uploaded to any public repositories (or pasted in a forum)**
+After successful completion, run `pip install -r requirements.txt` and `pip install zappa`. Before you deploy, you need to create the file `kodi.config` from the [kodi.config.example template](https://raw.githubusercontent.com/m0ngr31/kodi-voice/master/kodi_voice/kodi.config.example) and enter the correct information for: address, port, username, and password. I'll go over the other variables in another section below.
 
-You do not need to change the options that already have values.
+Before you can send any code to Lambda, you'll need to setup Zappa. Just run `zappa init` and accept the defaults for everything. If it doesn't automatically detect that this is a Flask app, tell it that the application function is "alexa.app".
 
-If using **eu-west-1** AWS region to host your Lambda function then you can adjust `AWS_DEFAULT_REGION` accordingly.
+To make an initial deployment to Lambda, just run the following command: `zappa deploy dev`. It'll take a few minutes, and at the end it will give you a URL that you will need to copy. It will look like this:
+![Lambda deploy](http://i.imgur.com/5rtN5ls.png)
 
-#### About AWS regions
-
-The AWS documentation ["Creating an AWS Lambda Function for a Custom Skill"](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/developing-an-alexa-skill-as-a-lambda-function) states:
-
->  _Lambda functions for Alexa skills must be hosted in the US East (N. Virginia) region. Currently, this is the only Lambda region the Alexa Skills Kit supports_.
-
-The above statement is repeated many times throughout the docs.
-
-However it is **outdated information** as now you can also use Ireland (eu-west-1). This has been confirmed by one of our users.
-
-It is also stated on the recently published tutorial["How to Build a Multi-Language Alexa Skill"](https://developer.amazon.com/public/community/post/Tx2XUAQ741IYQI4/How-to-Build-a-Multi-Language-Alexa-Skill):
-
-> _Only eu-west-1 (Dublin) and us-east-1 (N.Virginia) AWS regions currently support the Alexa Skills Kit and lambda integration._
-
-### AWS variables
-
-To get to the options for the AWS variables, log in to the [AWS console](https://console.aws.amazon.com/console/home) and browse to [Identity and Access Management](https://console.aws.amazon.com/iam/home). Once in there, navigate to the "Users" tab and look for an existing user. If there isn't one, go ahead and create a new one. Once you see a user there, click on it and go to the 'Security Credentials' tab. Then click on 'Create Access Key'. This will only show once, so make sure you copy the Access Key and Secret Access Key before you close the modal. Paste these values into the `.env` file.
-
-Next, click on the 'Roles' tab on the right. Here, you're going to create a new role that will be just used for running Lambda functions. What name you give it doesn't matter, but when asked for policies, make sure you select "AWSLambdaFullAccess". After that's been created, copy the "Role ARN" value to the `.env` file under "LAMBDA_ROLE". It'll look something like "arn:aws:iam::11111111111:role/lambda" depending on what you named it.
-
-Now, go back to the console and make sure you are in the directory with this code in it. Run the following commands:
-
-`pip install lambda-deploy`
-
-`python deploy-to-lambda.py`
-
-If you edited the `.env` file correctly, this should have successfully sent the code to AWS. Let's go look at your Lambda functions and finish setting up the function. [Browse back to the AWS console and click on Lambda](https://console.aws.amazon.com/lambda/home?region=us-east-1#/functions?display=list). There you should see your function. Click on it and go to the triggers tab. Click on "Add Trigger" and select "Alexa Skills Kit". At the top right of this page, you'll see text that will say something like "ARN - arn:aws:lambda:us-east-1:11111111111:function:kodi-alexa". Copy this, as we'll need it in when you setup the skill.
+You are now running on Lambda! To update after there is a change here, or you updated your env variables, just run `zappa update dev`.
 
 Now skip ahead to the [Skill setup section](#skill-setup).
 
 ## Docker
 
-I personally haven't tried this, so I can't verify that it works, and I don't know how to make it work. But if someone would like to submit a PR to add documentaion, I would appreciate it.
+The Docker support files have been removed as there are no reports of anyone using it sucessfully. Though there were several reporting they were unable to get it to work:
 
-Here the docker command to get it running: `docker run -p "443:8000" -e KODI_ADDRESS="<local xbmc ip>" -e KODI_PORT="8080" -e KODI_USERNAME="<your xbmc/kodi username>" -e KODI_PASSWORD="<the user's password>" kuroshi/kodi-alexa`
+https://lime-technology.com/forum/index.php?topic=53050.0
+https://forum.libreelec.tv/thread-2135.html
+https://forum.libreelec.tv/thread-1787.html
 
+If you are curious or want to create a Docker version, go back to any release before 2.5.
 
 # Skill Setup
 
-Once you've setup your server, you'll need to setup an Amazon developer account and start setting up a new Alexa skill.
+If you are self-hosting, you will need to create the file `kodi.config` from the [kodi.config.example template](https://raw.githubusercontent.com/m0ngr31/kodi-voice/master/kodi_voice/kodi.config.example).  The template file contains comments to describe the options.
 
-Here's what it'll look like:
+Once you've set up your server, you'll need to configure a new Alexa skill. Head over to the [Skills list on Amazon's developer page](https://developer.amazon.com/edw/home.html#/skills/list) and hit the 'Add new skill' button.
 
-![1st tab](http://i.imgur.com/q0Wqld1.png)
+The initial setup page looks like this:
+![Inital setup skill](http://i.imgur.com/AzufQxo.png)
 
-You'll just need to stick the URL from your app in the Endpoint field. If you are using Lambda, you'll need to use the ARN you got earlier.
+On the next page, you'll have to paste the contents of the [IntentSchema.json](https://raw.githubusercontent.com/m0ngr31/kodi-alexa/master/speech_assets/IntentSchema.json) file into the "Intent Schema" field, and paste the contents of the [SampleUtterances.txt](https://raw.githubusercontent.com/m0ngr31/kodi-alexa/master/speech_assets/SampleUtterances.txt) or [SampleUtterances.german.txt](https://raw.githubusercontent.com/m0ngr31/kodi-alexa/master/speech_assets/SampleUtterances.german.txt) file in the "Sample Utterances" field. **Generate and save your Custom Slots first before pasting the Intents and Utterances to avoid errors when attempting to save**.
 
-On the next tab, you'll have to paste the `alexa.intents` file into the "Intent Schema" field, and paste the `alexa.utterances` file in the "Sample Utterances" field. Generate and save your Slots first before pasting the Intents and Utterances to avoid errors when attempting to save.
-
-The tricky part is generating the Slots in the middle section. You need to create 9 different slots:
-
+You need to create 9 different slots:
 - MOVIES
 - MOVIEGENRES
 - SHOWS
@@ -170,38 +153,72 @@ The tricky part is generating the Slots in the middle section. You need to creat
 - VIDEOPLAYLISTS
 - ADDONS
 
-To make it as easy as possible, I wrote a little webapp that will give you the information you need: [here.](https://slot-generator.herokuapp.com/). You can also get the information from running `python generate_custom_slots.py` in the repo directory if you have python installed. This will create txt files with the relevant information. If one of your slots is empty, you can just enter the word 'Empty' or something so that it'll save.
+To make it as easy as possible, I wrote a little webapp that will give you the information you need: [here](https://slot-generator.herokuapp.com/).
+
+You can also get the information from running `python generate_custom_slots.py` in the project directory. This will create txt files with the relevant information. This will communicate with the Kodi instance defined in the `[DEFAULT]` section in `kodi.config`. *NOTE: If you're deploying to Heroku, you cannot use the python slot generator unless you create the kodi.config file.  It's best to use the webapp for generating slots in this case.*
+
+If one of your slots is empty, you can just enter the word 'Empty' or something so that it'll save.
 
 ![2nd tab](http://i.imgur.com/WQYExdK.png)
 
-The next tab has info about the SSL cert, if you are using Heroku, select the middle option.
+The next tab has info about the server. Enter your Heroku, Lambda, or self-hosted URL here.
+![3rd tab](http://i.imgur.com/GjFvKYv.png)
+
+The fourth tab is asking about the SSL certificate. If you are using Heroku or Lambda, select the middle option.
 
 ![3rd tab](http://i.imgur.com/moGJQrx.png)
 
 After that is pretty much just information that you can just put whatever into. Don't submit it for certification since only you will be using your server.
 
-And now you should be set! Go ahead and try speaking a few commands to it and see if it works! If you can't get it working, try looking for support in [this thread](http://forum.kodi.tv/showthread.php?tid=254502) on the Kodi forum, and if you have more techinical problems, submit and issue here on Github.
+And now you should be set! Go ahead and try speaking a few commands to it and see if it works! If you can't get it working, see the [Getting Help section](#getting-help).
 
 Thanks!
 
+# Controlling more than one instance of Kodi
+
+As of version 2.6 of the skill, it can now control more than one instance of [Kodi](https://kodi.tv).  The skill determines which instance to talk to by determining which Echo device received the command.
+
+You set up the mapping in the `kodi.config` file.  There are a few examples there with dummy device IDs.
+
+If a device ID isn't explicitly present in the config file, it will utilize the details in the `[DEFAULT]` section.  So, for example, if you wanted most of your devices to send commands to [Kodi](https://kodi.tv) in your living room, you would set the `[DEFAULT]` section to point at that instance.  For any that you want to override -- say, office and master bedroom -- you would define override sections with those device IDs.
+
+Further, for override sections, if a variable isn't defined, it will inherit it from the `[DEFAULT]` section.  Thus, if the only thing you need to change is `address` and `port`, define just those in the override.  You do not need to copy all of the other variables as well.
+
+## Getting the device IDs
+
+When you send a request to the skill, it will log an entry on the skill's server that will look something like this:
+
+`Sending request to http://mydomain.com:8080/jsonrpc from device amzn1.ask.device.AEFDXCGLSFJFNGCVF8SDJF90FID9G284JDJFGJGHH83358DJFFGIGD734JJDFGK211GDFFHHH23HGFJTYEFGJRT56KJDHDFJ5546DJDFFSWOPPP677P88P873EHZNZDFEIRTYIN2239NDFGIH724JDFKS2AA`
+
+For AWS Lambda/Zappa deployments, you can access your logs with:
+
+`zappa tail dev`
+
+To generate your override sections, you will want to tail (watch the end of) the log file and send any request (like, `Alexa, ask Kodi what is playing?`) from the Echo device you wish to override.  Look for a line that looks like the above.  The device ID is everything from `amzn1.ask.device.` to the end of the line.  Copy this text and paste it to the end of the `kodi.config` file, placing it within square brackets `[]`, like so:
+
+`[amzn1.ask.device.AEFDXCGLSFJFNGCVF8SDJF90FID9G284JDJFGJGHH83358DJFFGIGD734JJDFGK211GDFFHHH23HGFJTYEFGJRT56KJDHDFJ5546DJDFFSWOPPP677P88P873EHZNZDFEIRTYIN2239NDFGIH724JDFKS2AA]`
+
+Anything in square brackets denotes a new section.  In this section, you can override whatever variables you'd like.  In this example, this Echo device is my Echo Dot in the office, so I would do something like:
+
+```
+# Office Echo Dot
+[amzn1.ask.device.AEFDXCGLSFJFNGCVF8SDJF90FID9G284JDJFGJGHH83358DJFFGIGD734JJDFGK211GDFFHHH23HGFJTYEFGJRT56KJDHDFJ5546DJDFFSWOPPP677P88P873EHZNZDFEIRTYIN2239NDFGIH724JDFKS2AA]
+address = office-dot
+```
 
 # Additional validation of requests
 
-To verify that incoming requests are only allowed from your own copy of the skill, you can set the `SKILL_APPID` environment variable to your own Application ID; e.g., `amzn1.ask.skill.deadbeef-4e4f-ad61-fe42-aee7d2de083d`
+To verify that incoming requests are only allowed from your own copy of the skill, you can set the `skill_id` configuration variable to your own Application ID; e.g., `amzn1.ask.skill.deadbeef-4e4f-ad61-fe42-aee7d2de083d`
 
-*NOTE: The rest of this is unsupported on AWS Lambda as Amazon performs these checks for you.*
+# Extra settings for more functionality
 
-You can also enable some extra verification of the SSL certificate by setting `SKILL_VERIFY_CERT` to `true`.  This will perform the following checks on the certificate:
+Setting the `timezone` configuration variable will make it so when you ask how long something has left playing, it'll also tell you when it will end according to your local wall-clock time.
 
-* Incoming request is from Amazon,
-* Certificate URL is from Amazon,
-* Timestamp of certificate is valid/not expired,
-* Signature can be verified.
+Setting `scheme` to `https` allows you to talk to your [Kodi](https://kodi.tv) box securely, but this requires some work on your end to set up.
 
-Note that you will need to manually install the dependencies in `requirements_verify.txt` if you want this additional validation.  Depending on your host environment, something like `pip install -r requirements_verify.txt` might work.
+By default, the skill allows very generic queries such as, `play 99 red balloons` or `shuffle the office`.  These very generic commands can be slow however, and may cause timeouts.  If these timeouts bother you, you can direct the skill to provide help playing media more specifically instead when it encounters these kinds of requests, by disabling `deep_search`.
 
-
-# Optimising search performance on large libraries (local installations only)
+# Optimising search performance on large libraries (self-host only)
 
 Matching what Alexa heard with content in your library isn't an exact science, and kodi-alexa uses fuzzy matching to try and help to do this reliably. It's possible if your libary is large that this may be a little slower than you'd like. If this is the case it's possible to improve the performance of the fuzzy matching module by installing the python-Levenshtein library. As it's compiled C you'll need to ensure you have python headers available on your machine and the tools required on your OS to compile the module. Using the Levenshtein module has only been tested when running the skill locally as a WSGI script. If all of the above is applicable to your deployment, you can opt to use this optimisation.
 
@@ -223,4 +240,4 @@ Here are a few demo videos showing how to use it. Other commands you can do are 
 
 # Getting Help
 
-If you run into an actual issue with the code, please open an Issue here on Github. If you need help getting a server going or configuring the Skill, pleas visit the [support thread on the Kodi forum.](http://forum.kodi.tv/showthread.php?tid=254502)
+If you run into an actual issue with the code, please open an Issue here on Github. If you need help getting a server going or configuring the Skill, please visit the [support thread on the Kodi forum.](http://forum.kodi.tv/showthread.php?tid=254502)

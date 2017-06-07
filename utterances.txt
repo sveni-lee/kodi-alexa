@@ -6,19 +6,11 @@
 # Tool to expand the single line into the usable list of utterances
 # http://www.makermusings.com/amazon-echo-utterance-expander/
 
+# Utterances that include a reference to a Slot are more specific than
+# others because, in testing, Alexa appears to not fuzzy match these
+# as well as those that have no slot references.
 
-PlayPause (play/pause/resume)
-
-Stop (stop/cancel/shut up)
-
-Skip (skip/next) (/song)
-Skip (listen to/play) next (/song)
-
-Prev (/listen to/play) previous (/song)
-
-StartOver (replay/start over)
-
-Home navigate home
+Home (navigate/go) home
 
 Back (/navigate/go) back
 Up (/navigate/go) up
@@ -54,23 +46,23 @@ AudioStreamPrevious previous (/audio) language
 
 PlayerMoveUp (track/pan/move) up
 PlayerMoveDown (track/pan/move) down
-PlayerMoveLeft (track/pan/move/go) left
-PlayerMoveRight (track/pan/move/go) right
+PlayerMoveLeft (track/pan/move) left
+PlayerMoveRight (track/pan/move) right
 PlayerRotateClockwise rotate (/clockwise/ninety degrees)
 PlayerRotateCounterClockwise rotate counter clockwise
 PlayerZoomHold hold (/it) (/there/right there)
 PlayerZoomHold give me a hard copy there
 PlayerZoomHold give me a hard copy right there
 PlayerZoomIn (enhance/move in/zoom in)
-PlayerZoomInMoveUp (enhance/move in/zoom in) and (track/pan/move/go) up
-PlayerZoomInMoveDown (enhance/move in/zoom in) and (track/pan/move/go) down
-PlayerZoomInMoveLeft (enhance/move in/zoom in) and (track/pan/move/go) left
-PlayerZoomInMoveRight (enhance/move in/zoom in) and (track/pan/move/go) right
+PlayerZoomInMoveUp (enhance/move in/zoom in) and (track/pan/move) up
+PlayerZoomInMoveDown (enhance/move in/zoom in) and (track/pan/move) down
+PlayerZoomInMoveLeft (enhance/move in/zoom in) and (track/pan/move) left
+PlayerZoomInMoveRight (enhance/move in/zoom in) and (track/pan/move) right
 PlayerZoomOut (pull out/pull back/move out/zoom out)
-PlayerZoomOutMoveUp (pull out/pull back/move out/zoom out) and (track/pan/move/go) up
-PlayerZoomOutMoveDown (pull out/pull back/move out/zoom out) and (track/pan/move/go) down
-PlayerZoomOutMoveLeft (pull out/pull back/move out/zoom out) and (track/pan/move/go) left
-PlayerZoomOutMoveRight (pull out/pull back/move out/zoom out) and (track/pan/move/go) right
+PlayerZoomOutMoveUp (pull out/pull back/move out/zoom out) and (track/pan/move) up
+PlayerZoomOutMoveDown (pull out/pull back/move out/zoom out) and (track/pan/move) down
+PlayerZoomOutMoveLeft (pull out/pull back/move out/zoom out) and (track/pan/move) left
+PlayerZoomOutMoveRight (pull out/pull back/move out/zoom out) and (track/pan/move) right
 PlayerZoomReset (normal/reset) zoom
 
 CleanVideo clean (/video) library
@@ -81,74 +73,99 @@ CleanAudio clean (audio/music) library
 
 UpdateAudio update (audio/music) library
 
-WhatAlbums what albums do (we/i/you) have by {Artist}
+PlayMedia play {Movie}
+ShuffleMedia shuffle {Show}
+
+WhatAlbums what albums (/do) (we/i/you) have by {Artist}
+
+ListenToAudio listen to {Artist}
 
 ListenToArtist (play/listen to/shuffle) (music by/artist) {Artist}
 
-ListenToAlbum (play/listen to) album {Album}
-ListenToAlbum (play/listen to) album {Album} by {Artist}
+ListenToLatestAlbum (play/listen to) (/the) (latest/newest) album by {Artist}
 
-ListenToSong (play/listen to) song {Song}
-ListenToSong (play/listen to) song {Song} by {Artist}
+ListenToAlbum (play/listen to) (/the) album {Album}
+ListenToAlbum (play/listen to) (/the) album {Album} by {Artist}
+
+ListenToSong (play/listen to) (/the) song {Song}
+ListenToSong (play/listen to) (/the) song {Song} by {Artist}
 
 ListenToAlbumOrSong (play/listen to) {Album} by {Artist}
 ListenToAlbumOrSong (play/listen to) {Song} by {Artist}
 
-ListenToAudioPlaylist (play/listen to) (song/music/audio) playlist {AudioPlaylist}
-ListenToAudioPlaylist (play/listen to) {AudioPlaylist} (song/music/audio) playlist
-ListenToAudioPlaylist listen to playlist {AudioPlaylist}
+ListenToAudioPlaylist (play/listen to) (/the) (song/music/audio) playlist {AudioPlaylist}
+ListenToAudioPlaylist (play/listen to) (/the) {AudioPlaylist} (song/music/audio) playlist
+ListenToAudioPlaylist listen to (/the) playlist {AudioPlaylist}
 ListenToAudioPlaylist listen to {AudioPlaylist} playlist
 
 ListenToAudioPlaylistRecent (play/listen to/shuffle) recent (songs/music/audio/albums)
 ListenToAudioPlaylistRecent (play/listen to/shuffle) recently added (songs/music/audio/albums)
 
-WatchRandomMovie (play/watch) random (/{Genre}) (movie/film)
+WatchVideo watch {Movie}
 
-WatchMovie (play/watch) (movie/film) {Movie}
+WatchRandomMovie (play/watch) (/a) random (/{Genre}) (movie/film)
+
+WatchMovie (play/watch) (/the) (movie/film) {Movie}
 
 WatchEpisode (play/watch) (season/series) {Season} episode {Episode} of {Show}
 
 WatchRandomEpisode (play/watch) (/random) episode of {Show}
 
-WatchNextEpisode (play/watch) next episode of {Show}
+WatchNextEpisode (play/watch) (/the) next episode of {Show}
 
-WatchLastShow continue (/watching/playing) (/last) show
+WatchLastShow continue (/watching/playing) (/last/the last) show
 
-WatchLatestEpisode (play/watch) (newest/latest) episode of {Show}
+WatchLatestEpisode (play/watch) (/the) (newest/latest) episode of {Show}
 
-WatchVideoPlaylist (play/watch) (movie/show/video) playlist {VideoPlaylist}
+WatchVideoPlaylist (play/watch) (/the) (movie/show/video) playlist {VideoPlaylist}
 WatchVideoPlaylist (play/watch) {VideoPlaylist} (movie/show/video) playlist
-WatchVideoPlaylist watch playlist {VideoPlaylist}
+WatchVideoPlaylist watch (/the) playlist {VideoPlaylist}
 WatchVideoPlaylist watch {VideoPlaylist} playlist
 
-ShuffleAudioPlaylist shuffle (song/music/audio) playlist {AudioPlaylist}
+ShuffleShow shuffle (/all) episodes of {Show}
+
+ShuffleLatestAlbum shuffle (/the) (latest/newest) album by {Artist}
+
+ShuffleAlbum shuffle (album/the album) {Album}
+ShuffleAlbum shuffle (/album/the album) {Album} by {Artist}
+
+ShuffleAudioPlaylist shuffle (/the) (song/music/audio) playlist {AudioPlaylist}
 ShuffleAudioPlaylist shuffle {AudioPlaylist} (song/music/audio) playlist
 
-ShuffleVideoPlaylist shuffle (movie/show/video) playlist {VideoPlaylist}
+ShuffleVideoPlaylist shuffle (/the) (movie/show/video) playlist {VideoPlaylist}
 ShuffleVideoPlaylist shuffle {VideoPlaylist} (movie/show/video) playlist
 
-ShufflePlaylist shuffle playlist {AudioPlaylist}
+ShufflePlaylist shuffle (/the) playlist {AudioPlaylist}
 ShufflePlaylist shuffle {AudioPlaylist} playlist
-ShufflePlaylist shuffle playlist {VideoPlaylist}
+ShufflePlaylist shuffle (/the) playlist {VideoPlaylist}
 ShufflePlaylist shuffle {VideoPlaylist} playlist
 
-WhatNewAlbums (if there are/are there/do (we/i) have) (/any/some) new albums (/recorded) (/to listen to) (/today/tonight)
-WhatNewAlbums (if there is/is there/do (we/i) have) a new album (/recorded) (/to listen to) (/today/tonight)
-WhatNewAlbums what (/new) albums ((/do) (we/i/you) have/are (ready/waiting/recorded/there/on the (/media) server))
+RecommendMedia (suggest/recommend) something
+RecommendMovie (suggest/recommend) (movie/film)
+RecommendShow (suggest/recommend) (/t. v.) show
+RecommendEpisode (suggest/recommend) (/t. v.) episode
+RecommendMusicVideo (suggest/recommend) music video
+RecommendArtist (suggest/recommend) ((/music) artist/musician/band)
+RecommendAlbum (suggest/recommend) album
+RecommendSong (suggest/recommend) (/some) (songs/music)
 
-WhatNewMovies (if there are/are there/do (we/i) have) (/any/some) new (movies/films) (/recorded) (/to watch) (/today/tonight)
+WhatNewAlbums (if there are/are there/do i have) new albums (/to listen to)
+WhatNewAlbums (if there is/is there/do i have) a new album (/to listen to)
+WhatNewAlbums what new albums (do i have/are there) (/to listen to)
+
+WhatNewMovies (if there are/are there/do i have) new (movies/films) (/to watch)
+WhatNewMovies (if there is/is there/do i have) a new (movie/film) (/to watch)
+WhatNewMovies what new (movies/films) (do i have/are there) (/to watch)
 WhatNewMovies (if there are/are there/do (we/i) have) (/any/some) new {Genre} (movies/films) (/recorded) (/to watch) (/today/tonight)
-WhatNewMovies (if there is/is there/do (we/i) have) a new (movie/film) (/recorded) (/to watch) (/today/tonight)
 WhatNewMovies (if there is/is there/do (we/i) have) a new {Genre} (movie/film) (/recorded) (/to watch) (/today/tonight)
-WhatNewMovies what (/new) {Genre} (movies/films) ((/do) (we/i/you) have/are (ready/waiting/recorded/there/on the (/media) server))
+WhatNewMovies what (/new) {Genre} (movies/films) ((/do) (we/i/you) have/are there)
 
-WhatNewShows (if there are/are there/do (we/i) have) (/any/some) new shows (/recorded) (/to watch) (/today/tonight)
-WhatNewShows (if there is/is there/do (we/i) have) a new show (/recorded) (/to watch) (/today/tonight)
-WhatNewShows what (/new) shows ((/do) (we/i/you) have/are (ready/waiting/recorded/there/on the (/media) server))
+WhatNewShows (if there are/are there/do i have) new shows (/to watch)
+WhatNewShows (if there is/is there/do i have) a new show (/to watch)
+WhatNewShows what new shows (do i have/are there) (/to watch)
 
-NewShowInquiry if (there is/we have) a new (/episode of) {Show}
-NewShowInquiry if (there are/we have) any (/(/new )episodes of) {Show}
-NewShowInquiry if (there is/we have) {Show}
+WhatNewEpisodes if (there is/we have) (a new/an) episode of {Show}
+WhatNewEpisodes if (there are/we have) any (/new) episodes of {Show}
 
 PartyMode listen to random music
 PartyMode listen to all music
@@ -156,13 +173,10 @@ PartyMode play random music
 PartyMode play all music
 PartyMode shuffle all music
 
-CurrentPlayItemInquiry what (/song/audio/video/movie/film/episode/show) is (this/playing/currently playing)
+CurrentPlayItemInquiry what is (this/playing/currently playing)
 
-CurrentPlayItemTimeRemaining how much (/time) is (left/remaining) on (my/this) (audio/video/movie/film/show/episode/song)
-CurrentPlayItemTimeRemaining how much (/time) is (left/remaining)
-CurrentPlayItemTimeRemaining how much longer is (/my/this) (audio/video/movie/film/show/episode/song)
-CurrentPlayItemTimeRemaining how much longer is this
-CurrentPlayItemTimeRemaining (when/what time) (will/does) (/my/this) (audio/video/movie/film/show/episode/song) end
+CurrentPlayItemTimeRemaining how much (/time) is (left/remaining) (/on this)
+CurrentPlayItemTimeRemaining how much longer (/is this)
 CurrentPlayItemTimeRemaining (when/what time) (will/does) this end
 CurrentPlayItemTimeRemaining (when/what time) this (ends/is over)
 CurrentPlayItemTimeRemaining (when/what time) is this over
@@ -177,16 +191,20 @@ Suspend go to sleep
 EjectMedia eject (/media/disc/compact disc/audio disc/blu-ray/blu-ray disc/c. d./d. v. d.)
 EjectMedia eject the (media/disc/compact disc/audio disc/blu-ray/blu-ray disc/c. d./d. v. d.)
 
+PlayerSeekForward (step/jump) (/forward) (/by) {ForwardDur}
+PlayerSeekForward forward (step/jump) by {ForwardDur}
 PlayerSeekSmallForward (/small) (step/jump) forward
 PlayerSeekSmallForward (/small) forward (step/jump)
 PlayerSeekBigForward (large/big/long) (step/jump) forward
 PlayerSeekBigForward (large/big/long) forward (step/jump)
+PlayerSeekBackward (step/jump) (backward/back) (/by) {BackwardDur}
+PlayerSeekBackward (backward/back) (step/jump) by {BackwardDur}
 PlayerSeekSmallBackward (/small) (step/jump) (backward/back)
 PlayerSeekSmallBackward (/small) (backward/back) (step/jump)
 PlayerSeekBigBackward (large/big/long) (step/jump) (backward/back)
 PlayerSeekBigBackward (large/big/long) (backward/back) (step/jump)
 
-AddonExecute (open/execute/run) (/addon/plugin/script) {Addon}
+AddonExecute (open/execute/run) (/addon/add on/plugin/plug in/script) {Addon}
 AddonGlobalSearch search for {Show}
 AddonGlobalSearch search for {Movie}
 AddonGlobalSearch search for {Album}

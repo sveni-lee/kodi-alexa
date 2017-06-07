@@ -27,6 +27,7 @@ var/
 *.egg-info/
 .installed.cfg
 *.egg
+venv/
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -49,10 +50,6 @@ coverage.xml
 *,cover
 .hypothesis/
 
-# Translations
-*.mo
-*.pot
-
 # Django stuff:
 *.log
 
@@ -68,6 +65,7 @@ test.py
 
 .env
 *.ini
+kodi.config
 MUSICALBUMS
 MUSICARTISTS
 MUSICSONGS
@@ -79,3 +77,7 @@ SHOWS
 ADDONS
 
 kodi-alexa/
+run.sh
+
+zappa_settings.json
+templates.yaml
